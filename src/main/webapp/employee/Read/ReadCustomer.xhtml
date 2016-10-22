@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>List of registered customers in the system</title>
+            </f:facet>
+        </h:head>
+
+        <h:body style="background-color: greenyellow">
+            <h3><center><b>List of Customers</b></center></h3>
+            <p:dataTable var="c" value="#{customerController.showCustomer()}">
+                <p:column headerText="Customer ID">
+                    <p:outputLabel value="#{c.id}" />
+                </p:column>
+
+                <p:column headerText="Customer First Name">
+                    <p:outputLabel value="#{c.name}" />
+                </p:column>
+
+                <p:column headerText="Customer Last Name">
+                    <p:outputLabel value="#{c.name2}" />
+                </p:column>
+
+                <p:column headerText="Customer Address">
+                    <p:outputLabel value="#{c.address}" />
+                </p:column>
+                
+                <p:column headerText="Customer ContactNo.">
+                    <p:outputLabel value="#{c.contactNo}" />
+                </p:column>     
+                
+                <p:column headerText="Customer Bank ID">
+                    <p:outputLabel value="#{c.bank.id}" />
+                </p:column>                
+            </p:dataTable>
+
+        </h:body>
+
+    </f:view>
+</html>

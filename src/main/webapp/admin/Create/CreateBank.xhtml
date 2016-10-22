@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>CREATE BANK</title>
+            </f:facet>
+        </h:head>
+
+        <h:body style="background-color: lightyellow">
+           <h:form id="form">
+                <p:panel id="panel" header="Create a new bank" style="margin-bottom:10px;">
+                    <p:messages id="messages" />
+                    <h:panelGrid columns="3" cellpadding="5">
+                        <p:outputLabel for="BankName" value="Bank Name :" />
+                        <p:inputText id="BankName" value="#{bankController.cbank.name}" required="true" label="Firstname">
+                            <f:validateLength minimum="1" />
+                        </p:inputText>
+                        <p:message for="BankName" />
+
+                        <p:outputLabel for="address" value="Bank Address :" />
+                        <p:inputText id="address" value="#{bankController.cbank.address}" required="true" label="Surname">
+                                                    <f:validateLength minimum="1" />
+                        </p:inputText>
+                        <p:message for="address" />
+
+                        <p:outputLabel for="contact" value="Bank Contact Number :" />
+                        <p:inputText id="contact" value="#{bankController.cbank.contactNo}" required="true" label="Surname">
+                                                    <f:validateLength minimum="1" />
+                        </p:inputText>
+                        <p:message for="contact" />
+                    </h:panelGrid>
+                </p:panel>
+               <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton value="Create New Bank" update="panel" actionListener="#{bankController.createBank()}" style="margin-right:20px;" />
+                </f:facet>
+               </p:toolbar>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

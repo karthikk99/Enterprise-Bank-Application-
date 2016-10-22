@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>UPDATE EMPLOYEE DETAILS</title>
+            </f:facet>
+        </h:head>
+
+        <h:body style="background-color: lightyellow">
+            <h:form>
+                <p:panel id="panel" header="Edit employee data in database" style="margin-bottom:10px;">
+                    <p:messages id="messages" />
+                    <h:panelGrid columns="3" cellpadding="5">
+                        <p:outputLabel for="eid" value="Employee's ID :" />
+                        <p:selectOneMenu id="eid" value="#{employeeController.eemp.id}" style="width:150px">
+                            <f:selectItems value="#{employeeController.showEmployee()}" var="emp" itemLabel="#{emp.id}" itemValue="#{emp.id}" />
+                        </p:selectOneMenu>
+                        <p:message for="eid" />
+
+                        <p:outputLabel for="empName" value="Employee First Name :" />
+                        <p:inputText id="empName" value="#{employeeController.eemp.name}" required="true" label="empName">
+                            <f:validateLength minimum="1" />
+                        </p:inputText>
+                        <p:message for="empName" />
+
+                        <p:outputLabel for="empName2" value="Employee Last Name :" />
+                        <p:inputText id="empName2" value="#{employeeController.eemp.name2}" required="true" label="empName2">
+                            <f:validateLength minimum="1" />
+                        </p:inputText>
+                        <p:message for="empName2" />
+
+                        <p:outputLabel for="address" value="Employee Address :" />
+                        <p:inputText id="address" value="#{employeeController.eemp.address}" required="true" label="address">
+                            <f:validateLength minimum="1" />
+                        </p:inputText>
+                        <p:message for="address" />
+
+                        <p:outputLabel for="contact" value="Employee ContactNo. :" />
+                        <p:inputText id="contact" value="#{employeeController.eemp.contactNo}" required="true" label="contact">
+                            <f:validateLength minimum="1" />
+                        </p:inputText>
+                        <p:message for="contact" />
+
+                        <p:outputLabel for="bankId" value="Employee's Bank ID :" />
+                        <p:selectOneMenu id="bankId" value="#{employeeController.bbid}" style="width:150px">
+                            <f:selectItems value="#{employeeController.showBank()}" var="bank" itemLabel="#{bank.id}" itemValue="#{bank.id}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton value="Update Employee" update="panel" actionListener="#{employeeController.editEmployee()}" style="margin-right:20px;" />
+                    </f:facet>
+                </p:toolbar>            
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>CREATE AN ACCOUNT FOR A CUSTOMER</title>
+            </f:facet>
+        </h:head>
+
+        <h:body style="background-color: greenyellow">
+            <h:form>
+                <p:panel id="panel" header="Create a new account for the customer" style="margin-bottom:10px;">
+                    <p:messages id="messages" />
+                    <h:panelGrid columns="3" cellpadding="5">
+                        <p:outputLabel for="type" value="Account Type:" />
+                        <p:selectOneMenu id="type" value="#{accountController.account.type}" style="width:200px">
+                            <f:selectItem itemValue="Savings-Account" itemLabel="Savings account"  />
+                            <f:selectItem itemValue="Checkings-Account" itemLabel="Checkings account" />
+                            <f:selectItem itemValue="Deposit-account" itemLabel="Deposit account" />
+                        </p:selectOneMenu>
+                        <p:message for="type" />
+
+                        <p:outputLabel for="cusId" value="Customer ID :" />
+                        <p:selectOneMenu id="cusId" style="width:150px" value="#{accountController.cid}">
+                            <f:selectItems value="#{customerController.showCustomer()}" var="customer" itemLabel="#{customer.id}" itemValue="#{customer.id}"/>
+                        </p:selectOneMenu>
+                        <p:message for="cusId" />
+
+                        <p:outputLabel for="bankId" value="Bank ID:  "/>
+                        <p:selectOneMenu id="bankId" style="width:150px" value="#{accountController.bid}">
+                            <f:selectItems value="#{bankController.showBank()}" var="bank" itemLabel="#{bank.id}" itemValue="#{bank.id}"/>
+                        </p:selectOneMenu>
+                        <p:message for="bankId" />
+
+                        <p:outputLabel for="empId" value="Employee ID:" />
+                        <p:inputText id="empId" value="#{employeeController.eid}" required="true" label="empId" disabled="true">
+                        </p:inputText>
+                        <p:message for="empId" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton value="Create Account" update="panel" actionListener="#{accountController.createAccount()}" style="margin-right:20px;" />
+                    </f:facet>
+                </p:toolbar>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

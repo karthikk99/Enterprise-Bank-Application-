@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>READ TRANSACTIONS</title>
+    </h:head>
+    <h:body style="background-color: greenyellow">
+    <h:form>
+        <p:panel id="panel" header="Select the customer ID to view transactions" style="margin-bottom:10px;">
+            <p:messages id="messages" />
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="cusId" value="Customer ID :" />
+                <p:selectOneMenu id="cusId" value="#{transactionController.ccid}" style="width:150px">
+                    <f:selectItems value="#{customerController.showCustomer()}" var="customer" itemLabel="#{customer.id}" itemValue="#{customer.id}" />
+                </p:selectOneMenu>
+                <p:message for="cusId" />
+            </h:panelGrid>
+        </p:panel>
+
+        <h:panelGroup id="table-wrapper">
+            <h3><center><b>Transaction Summary</b></center></h3>
+            <p:dataTable rendered="#{transactionController.visible}" value="#{transactionController.showCustomerById()}" var="a">
+  <p:column headerText="Transaction ID">
+                    <p:outputLabel value="#{a.transactionId}" />
+                </p:column>
+
+                <p:column headerText="Transaction type">
+                    <p:outputLabel value="#{a.type}" />
+                </p:column>
+
+                <p:column headerText="Customer ID">
+                    <p:outputLabel value="#{a.customer.id}" />
+                </p:column>
+
+                <p:column headerText="Timestamp">
+                    <p:outputLabel value="#{a.timestamp}" />
+                </p:column>
+                
+                <p:column headerText="Comments">
+                    <p:outputLabel value="#{a.comment}" />
+                </p:column>
+                
+                <p:column headerText="Transaction Amount">
+                    <p:outputLabel value="#{a.amount}" />
+                </p:column>
+            </p:dataTable>
+        </h:panelGroup>
+
+        <p:toolbar>
+            <f:facet name="left">
+                <p:commandButton actionListener="#{transactionController.getUserList(event)}" update="table-wrapper" value="Show Customer Transactions" style="margin-right:20px;" />
+            </f:facet>
+        </p:toolbar>      
+    </h:form>
+    </h:body>
+</html>

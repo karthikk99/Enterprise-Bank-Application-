@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>DELETE EMPLOYEE</title>
+    </h:head>
+    <h:body style="background-color: lightyellow">
+    <h:form>
+        <p:panel id="panel" header="Delete an Employee" style="margin-bottom:10px;">
+            <p:messages id="messages" />
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="empId" value="Employee ID :" />
+                <p:selectOneMenu id="empId" value="#{employeeController.demp.id}" style="width:150px">
+                    <f:selectItems value="#{employeeController.showEmployee()}" var="emp" itemLabel="#{emp.id}" itemValue="#{emp.id}"/>
+                </p:selectOneMenu>
+                <p:message for="empId" />
+            </h:panelGrid>
+        </p:panel>
+
+        <p:toolbar>
+            <f:facet name="left">
+                <p:commandButton value="Delete Employee" update="panel" actionListener="#{employeeController.deleteEmployee()}" style="margin-right:20px;" />
+            </f:facet>
+        </p:toolbar> 
+    </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>CREATE CUSTOMER</title>
+            </f:facet>
+        </h:head>
+
+        <h:body style="background-color: greenyellow">
+            <h:form style="background-color: greenyellow">
+                <p:panel id="panel" header="Add a new customer" style="margin-bottom:10px;">
+                    <p:messages id="messages" />
+                    <h:panelGrid columns="3" cellpadding="5">
+                        <p:outputLabel for="cusName" value="Customer First Name:  "/>
+                        <p:inputText id="cusName" value="#{customerController.customer.name}" required="true">
+                            <f:validateLength minimum="1" maximum="30"/>
+                        </p:inputText>
+                        <p:message for="cusName" />
+
+                        <p:outputLabel for="cusLname" value="Customer Last Name:  "/>
+                        <p:inputText id="cusLname" value="#{customerController.customer.name2}" required="true">
+                            <f:validateLength minimum="1" maximum="30"/>
+                            <a href="CreateCustomer.xhtml"></a>
+                        </p:inputText>
+                        <p:message for="cusLname" />
+
+                        <p:outputLabel for="address" value="Customer Address: "/>
+                        <p:inputText id="address" value="#{customerController.customer.address}" required="true">
+                            <f:validateLength minimum="1" maximum="60"/>
+                        </p:inputText>
+                        <p:message for="address" />
+
+                        <p:outputLabel for="contact" value="Customer Contact Number: "/>
+                        <p:inputText id="contact" value="#{customerController.customer.contactNo}" required="true">
+                            <f:validateLength minimum="10" maximum="10"/>
+                        </p:inputText>
+                        <p:message for="contact" />
+                        
+                        <p:outputLabel for="empId" value="Employee ID:" />
+                        <p:inputText id="empId" value="#{loginBean.uid}" required="true" label="empId" disabled="true">
+                        </p:inputText>
+                        <p:message for="empId" />
+                        
+                        <p:outputLabel for="bank" value="Bank ID:  "/>
+                        <p:selectOneMenu id="bank" value="#{customerController.bid}" style="width:150px">
+                            <f:selectItems value="#{customerController.showBank()}" var="bank" itemLabel="#{bank.id}" itemValue="#{bank.id}"/>
+                        </p:selectOneMenu>
+                        <p:message for="bank" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton value="Create Customer" update="panel" actionListener="#{customerController.createCustomer()}" style="margin-right:20px;" />
+                    </f:facet>
+                </p:toolbar>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

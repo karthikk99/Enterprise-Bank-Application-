@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="discJockeys" type="java.util.List" required="true"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:dataTable value="#{cc.attrs.discJockeys}" var="dj">
+            <h:column>
+                <f:facet name="header"><h:outputText value="ID"/></f:facet>
+                <h:outputText value="#{dj.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="DJ"/></f:facet>
+                <h:outputText value="#{dj.nickName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Username"/></f:facet>
+                <h:outputText value="#{dj.user.userName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+                <h:outputText value="#{dj.firstName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+                <h:outputText value="#{dj.lastName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Primary Station"/></f:facet>
+                <h:outputText value="#{dj.radioStation.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Birthdate"/></f:facet>
+                <h:outputText value="#{dj.birthDate}">
+                    <f:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>            
+            <h:column>
+                <f:facet name="header"><h:outputText value="Activity Date"/></f:facet>
+                <h:outputText value="#{dj.lastUpdated}">
+                    <f:convertDateTime type="both" dateStyle="short" timeStyle="full"/>
+                </h:outputText>
+            </h:column>
+        </h:dataTable>        
+    </cc:implementation>
+</html>

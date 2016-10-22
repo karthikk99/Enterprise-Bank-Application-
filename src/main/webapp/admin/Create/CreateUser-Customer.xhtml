@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>CREATE USER ACCOUNT FOR CUSTOMER</title>
+            </f:facet>
+        </h:head>
+
+        <h:body style="background-color: lightyellow">
+            <h:form>
+                <p:panel id="panel" header="Create User Account for a Customer" style="margin-bottom:10px;">
+                    <p:messages id="messages" />
+                    <h:panelGrid columns="3" cellpadding="5">
+                        <p:outputLabel for="uName" value="Login UserName :" />
+                        <p:inputText id="uName" value="#{userController.cuser.userName}" required="true" label="uName">
+                            <f:validateLength minimum="5" />
+                        </p:inputText>
+                        <p:message for="uName" />
+
+                        <p:outputLabel for="password" value="Password :" />
+                        <p:password id="password" value="#{userController.cuser.password}" required="true" feedback="true" inline="true">
+                            <f:validateLength minimum="5" />
+                        </p:password>
+                        <p:message for="password" />
+
+                        <p:outputLabel for="cusId" value="Customer ID :" />
+                        <p:selectOneMenu id="cusId" style="width:150px" value="#{userController.cid}">
+                            <f:selectItems value="#{customerController.showCustomer()}" var="customer" itemLabel="#{customer.id}" itemValue="#{customer.id}"/>
+                        </p:selectOneMenu>
+                        <p:message for="cusId" />
+
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton value="Create User" update="panel" actionListener="#{userController.createCustomerUser()}" style="margin-right:20px;" />
+                    </f:facet>
+                </p:toolbar>           
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

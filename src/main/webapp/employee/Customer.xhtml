@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/portalTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+
+    <ui:define name="title">
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:body style="background-color: greenyellow">
+        <div class="container">
+            <div class="jumbotron">
+                <h3><center><b>Customer Settings</b></center></h3>
+                <div class="large-3 large-centered columns">
+                    <div class="login-box">
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <h:form>
+                                    <div class="row">
+                                        <div class="large-12 large-centered columns">
+                                            <h:commandButton id="button1" class="btn btn-success btn-lg btn-block" value="Create Customer" action="#{navigationBean.toCreateCustomer()}"/>
+                                            <br/>
+                                            <h:commandButton id="button4" class="btn btn-success btn-lg btn-block" value="Read Customer" action="#{navigationBean.toReadCustomer()}"/>
+                                            <br/>
+                                            <h:commandButton id="button9" class="btn btn-success btn-lg btn-block" value="Update Customer" action="#{navigationBean.toEditCustomer()}"/>
+                                            <br/>
+                                            <h:commandButton id="button8" class="btn btn-success btn-lg btn-block" value="Delete Customer" action="#{navigationBean.toDeleteCustomer()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </h:body>
+    </ui:define>
+
+</ui:composition>
